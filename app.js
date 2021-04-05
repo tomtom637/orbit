@@ -40,7 +40,7 @@ function animate(timestamp) {
 
 window.requestAnimationFrame(animate);
 
-window.addEventListener('mousedown', addPlanet);
+window.addEventListener('click', addPlanet);
 
 function addPlanet(e) {
   planetInstances[planetInstances.length] = new Planet({
