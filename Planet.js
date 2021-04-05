@@ -50,9 +50,9 @@ export class Planet {
 	  	 		this.xs += ax;
 	  	 		this.ys += ay;
   	 		}
-  	 		this.x += this.xs;
-  	 		this.y += this.ys;
 		}
+		this.x += this.xs;
+ 		this.y += this.ys;
 	}
 	detectCollision() {
 		for(let planetInstance of planetInstances) {
