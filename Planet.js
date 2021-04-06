@@ -62,7 +62,7 @@ export class Planet {
 				
 				planetInstance.xs = (this.xs * this.mass + planetInstance.xs * planetInstance.mass) / (this.mass + planetInstance.mass);
 				planetInstance.ys = (this.ys * this.mass + planetInstance.ys * planetInstance.mass) / (this.mass + planetInstance.mass);
-				planetInstance.radius = (this.radius + planetInstance.radius) * 0.8;
+				planetInstance.radius = (this.radius * 0.2) + planetInstance.radius;
 				planetInstance.mass = this.mass + planetInstance.mass;
 
 				planetInstances.splice(planetInstances.indexOf(this), 1);
