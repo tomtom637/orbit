@@ -2,6 +2,11 @@ import { canvas, ctx } from './canvas.js';
 import { planetInstances, Planet } from './Planet.js';
 import { camera, updateCamera } from './camera.js';
 
+window.onresize = () => {
+  canvas.width = canvas.clientWidth;
+  canvas.height = canvas.clientHeight;
+}
+
 export const sun = new Planet({
   x: canvas.width / 2,
   y: canvas.height / 2,
