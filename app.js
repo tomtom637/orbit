@@ -1,5 +1,6 @@
 import { canvas, ctx } from './canvas.js';
 import { planetInstances, Planet } from './Planet.js';
+import { buildProceduralBackground, drawProceduralBackground } from './proceduralBackground.js';
 import { camera, updateCamera } from './camera.js';
 
 window.onresize = () => {
@@ -22,8 +23,11 @@ function drawBackground() {
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
+buildProceduralBackground();
+
 function animate(timestamp) {
-  drawBackground();
+  drawBackground();  
+  drawProceduralBackground();
   updateCamera();
   for(let planetInstance of planetInstances) { planetInstance.update(); }
   for(let planetInstance of planetInstances) { planetInstance.detectCollision(); }

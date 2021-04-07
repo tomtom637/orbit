@@ -33,6 +33,7 @@ export class Planet {
 	draw() {
 		ctx.beginPath();
 		ctx.strokeStyle = this.color;
+		ctx.fillStyle = '#262626';
 		ctx.lineWidth = 3;
 		ctx.arc(
 				this.x + camera.x,
@@ -42,6 +43,7 @@ export class Planet {
 				2 * Math.PI
 			);
 		ctx.stroke();
+		ctx.fill();
 	}
 	update() {
 		for(let planetInstance of planetInstances) {
