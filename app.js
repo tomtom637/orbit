@@ -1,14 +1,8 @@
 import { canvas, ctx } from './canvas.js';
 import { planetInstances, Planet } from './Planet.js';
+import { camera, updateCamera } from './camera.js';
 
-window.onresize = () => {
-  canvas.width = canvas.clientWidth;
-  canvas.height = canvas.clientHeight;
-  sun.x = canvas.width / 2;
-  sun.y = canvas.height / 2;
-}
-
-const sun = new Planet({
+export const sun = new Planet({
   x: canvas.width / 2,
   y: canvas.height / 2,
   xs: 0,
@@ -25,15 +19,10 @@ function drawBackground() {
 
 function animate(timestamp) {
   drawBackground();
-  for(let planetInstance of planetInstances) {
-    planetInstance.update();
-  }
-  for(let planetInstance of planetInstances) {
-    planetInstance.detectCollision();
-  }
-  for(let planetInstance of planetInstances) {
-    planetInstance.draw();
-  }
+  updateCamera();
+  for(let planetInstance of planetInstances) { planetInstance.update(); }
+  for(let planetInstance of planetInstances) { planetInstance.detectCollision(); }
+  for(let planetInstance of planetInstances) { planetInstance.draw(); }
 
   window.requestAnimationFrame(animate);
 }
@@ -44,8 +33,8 @@ window.addEventListener('click', addPlanet);
 
 function addPlanet(e) {
   planetInstances[planetInstances.length] = new Planet({
-    x: e.clientX,
-    y: e.clientY,
+    x: e.clientX - camera.x,
+    y: e.clientY - camera.y,
     xs: 2,
     ys: 0,
     radius: 5,

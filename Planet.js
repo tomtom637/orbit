@@ -1,4 +1,5 @@
 import { ctx } from './canvas.js';
+import { camera } from './camera.js';
 
 export const planetInstances = [];
 
@@ -33,7 +34,13 @@ export class Planet {
 		ctx.beginPath();
 		ctx.strokeStyle = this.color;
 		ctx.lineWidth = 3;
-		ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+		ctx.arc(
+				this.x + camera.x,
+				this.y + camera.y,
+				this.radius,
+				0,
+				2 * Math.PI
+			);
 		ctx.stroke();
 	}
 	update() {
