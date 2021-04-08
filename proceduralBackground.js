@@ -40,5 +40,5 @@ buildProceduralBackground();
 drawProceduralBackground();
 
 export function updateProceduralBackground() {
-  ctx.drawImage(starsCanvas, camera.x, camera.y, starsCanvas.width, starsCanvas.height);
+  ctx.drawImage(starsCanvas, camera.x, camera.y, 6000, 6000);
 }
