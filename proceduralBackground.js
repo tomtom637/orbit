@@ -1,11 +1,14 @@
 import { canvas, ctx } from './canvas.js';
 import { camera } from './camera.js'
 
-const starsCanvas = document.createElement('canvas');
+export const starsCanvas = document.createElement('canvas');
 const starsCtx = starsCanvas.getContext('2d');
 
-starsCanvas.width = canvas.clientWidth * 1.5;
-starsCanvas.height = canvas.clientHeight * 1.5;
+starsCanvas.width = 6000;
+starsCanvas.height = 6000;
+
+const canvasWidth = canvas.clientWidth;
+const canvasHeight = canvas.clientHeight;
 
 const proceduralBackground = [];
 
@@ -37,5 +40,5 @@ buildProceduralBackground();
 drawProceduralBackground();
 
 export function updateProceduralBackground() {
-  ctx.drawImage(starsCanvas, camera.x, camera.y, canvas.width, canvas.height);
+  ctx.drawImage(starsCanvas, camera.x, camera.y, starsCanvas.width, starsCanvas.height);
 }
