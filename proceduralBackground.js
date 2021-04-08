@@ -1,11 +1,11 @@
 import { canvas, ctx } from './canvas.js';
-import { camera } from './camera.js'
+import { camera } from './camera.js';
 
 export const starsCanvas = document.createElement('canvas');
 const starsCtx = starsCanvas.getContext('2d');
 
-starsCanvas.width = 6000;
-starsCanvas.height = 6000;
+starsCanvas.width = 600;
+starsCanvas.height = 600;
 
 const canvasWidth = canvas.clientWidth;
 const canvasHeight = canvas.clientHeight;
@@ -13,11 +13,11 @@ const canvasHeight = canvas.clientHeight;
 const proceduralBackground = [];
 
 function buildProceduralBackground() {
-  for(let i = 0; i < 10000; i++) {
+  for(let i = 0; i < 600; i++) {
     proceduralBackground.push({
-      x: (Math.random() * canvas.width * 3) - (Math.random() * canvas.width * 3),
-      y: (Math.random() * canvas.height * 3) - (Math.random() * canvas.width * 3),
-      radius: Math.random() * 3,
+      x: Math.random() * 600,
+      y: Math.random() * 600,
+      radius: Math.random() * 2,
       color: `rgba(
                 ${~~(Math.random() * 105) + 150},
                 ${~~(Math.random() * 105) + 150},
@@ -39,6 +39,24 @@ function drawProceduralBackground() {
 buildProceduralBackground();
 drawProceduralBackground();
 
+const starsCanvasCoordonates = {x: canvas.width / 2, y: canvas.height / 2};
+
 export function updateProceduralBackground() {
-  ctx.drawImage(starsCanvas, camera.x, camera.y, 6000, 6000);
+    let x = starsCanvasCoordonates.x + camera.x - starsCanvas.width / 2;
+    let y = starsCanvasCoordonates.y + camera.y - starsCanvas.height / 2;
+
+  ctx.drawImage(starsCanvas, x, y, 600, 600);
+  
+  if(x > 0) {
+    ctx.drawImage(starsCanvas, x - starsCanvas.width, y, 600, 600);
+  }
+  if(x < canvas.width - starsCanvas.width) {
+    ctx.drawImage(starsCanvas, x + starsCanvas.width, y, 600, 600); 
+  }
+  if(y > 0) {
+    ctx.drawImage(starsCanvas, x, y - starsCanvas.height, 600, 600);
+  }
+  if(x < canvas.width - starsCanvas.width) {
+    ctx.drawImage(starsCanvas, x, y + starsCanvas.height, 600, 600); 
+  }
 }
