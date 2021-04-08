@@ -4,8 +4,8 @@ import { camera } from './camera.js'
 const starsCanvas = document.createElement('canvas');
 const starsCtx = starsCanvas.getContext('2d');
 
-starsCanvas.width = canvas.clientWidth;
-starsCanvas.height = canvas.clientHeight;
+starsCanvas.width = canvas.clientWidth * 1.5;
+starsCanvas.height = canvas.clientHeight * 1.5;
 
 const proceduralBackground = [];
 
